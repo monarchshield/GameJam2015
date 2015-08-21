@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BombScript.cs">
+    <Files>
+      <File FileName="Assets\Scripts\BombScript.cs" Line="26" Column="11" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="160" Column="2" />
+      <File FileName="Assets\Scripts\RefreshJump.cs" Line="23" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
