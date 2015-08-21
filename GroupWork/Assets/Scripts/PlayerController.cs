@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode _moveRight = KeyCode.D;
     public KeyCode _shootKey = KeyCode.E;
 
-	float Direction = 1; //(If set to 1: Player facing Right) Else if( set to -1: Player Facing left);
+	float _direction = 1; //(If set to 1: Player facing Right) Else if( set to -1: Player Facing left);
 
     bool _holdingbomb = false;
     bool _bombreleased = false; //This is if the bomb has been released etc etc
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
 		_rigidbody = GetComponent<Rigidbody> ();
-        Debug.Log("Spawning in a player!");
+       
     }
 
     // Update is called once per frame
@@ -58,14 +58,14 @@ public class PlayerController : MonoBehaviour
         {
     
 			transform.Translate(new Vector3(0,0,1) * _speed * Time.deltaTime);
-			Direction = 1;
+			_direction = 1;
         }
 
 
         if (Input.GetKey(_moveRight))
         {
 			transform.Translate(new Vector3(0,0,-1) * _speed * Time.deltaTime);
-			Direction = -1;
+			_direction = -1;
         }
 
         if (Input.GetKey(_jump) && _canJump)
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
                 }
 
 
-				Debug.Log("Strength:" + _strength.ToString());
+
             }
 
             
@@ -156,9 +156,14 @@ public class PlayerController : MonoBehaviour
 
 	void CreateBomb()
 	{
-		GameObject obj = Instantiate(_bomb, transform.position, transform.rotation) as GameObject;
+
+		float zOffset = _direction * 2;
+		Vector3 Offset = new Vector3 (0, 0 , zOffset);
+		Debug.Log ("Z offset: " + zOffset.ToString ());
+
+		GameObject obj = Instantiate(_bomb, transform.position + Offset, transform.rotation) as GameObject;
 		BombScript bomb = obj.GetComponent<BombScript> ();
-		bomb.SetDirection (Direction);
+		bomb.SetDirection (_direction);
 		bomb.SetStrength(_strength);
 
 	}
