@@ -45,5 +45,13 @@ public class BombScript : MonoBehaviour {
 	public void SetDirection(float direction)  { _dir = direction; }
 	public void SetStrength(int strength) { _strength = strength; } 
 
-
+	void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.tag == "Player") 
+		{
+			PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+			player.isAlive(false);
+			Debug.Log("Player died");
+		}
+	}
 }
