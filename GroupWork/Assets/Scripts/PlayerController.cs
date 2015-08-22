@@ -71,14 +71,14 @@ public class PlayerController : MonoBehaviour
         {
     
 			transform.Translate(new Vector3(0,0,1) * _speed * Time.deltaTime);
-			_direction = 1;
+			_direction = -1;
         }
 
 
         if (Input.GetKey(_moveRight))
         {
 			transform.Translate(new Vector3(0,0,-1) * _speed * Time.deltaTime);
-			_direction = -1;
+			_direction = 1;
         }
 
         if (Input.GetKey(_jump) && _canJump)
@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
                     _strength += 1;
                     _timer = _delay;
 
-					_strengthbar.transform.localScale = new Vector3(1, 1,_strength);
+					_strengthbar.transform.localScale = new Vector3(_strength, 1,1);
 
                     if (_strength >= 10)
                         _strengthInvert = true;
@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
                     _strength -= 1;
                     _timer = _delay;
 
-					_strengthbar.transform.localScale = new Vector3(1, 1,_strength);
+					_strengthbar.transform.localScale = new Vector3(_strength, 1,1);
 
                     if (_strength <= 0)
                         _strengthInvert = false;
@@ -151,7 +151,9 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("No Xbox360 Input Yet Lol");
 		AxisInput = 0;
-		AxisInput = Input.GetAxis (PlayerID + "_Horizontal");
+		AxisInput = Input.GetAxis (PlayerID.ToString() + "_Horizontal");
+
+
 
 		//Debug.Log ("Axis Input is: " + AxisInput.ToString ());
 
@@ -174,8 +176,8 @@ public class PlayerController : MonoBehaviour
 		if (AxisInput < 0) 
 		{
 			Debug.Log("Player Moving left");
-			transform.Translate(new Vector3(0,0,1) * _speed * Time.deltaTime);
-			_direction = 1;
+			transform.Translate(new Vector3(-1,0,0) * _speed * Time.deltaTime);
+			_direction = -1;
 		}
 		
 		//Move player right
@@ -183,14 +185,14 @@ public class PlayerController : MonoBehaviour
 		if (AxisInput > 0) 
 		{
 			Debug.Log("Player Moving right");
-			transform.Translate(new Vector3(0,0,-1) * _speed * Time.deltaTime);
-			_direction = -1;
+			transform.Translate(new Vector3(1,0,0) * _speed * Time.deltaTime);
+			_direction = 1;
 		}
 
 		float axis1 = 0.0f;
 		float axis2 = 0.0f;
 
-		axis1 = Input.GetAxisRaw ("P2_Horizontal");
+		axis1 =   Input.GetAxisRaw ("P2_Horizontal");
 		axis2 = Input.GetAxisRaw ("P2_Horizontal");
 
 		Debug.Log ("Player one input: " + Input.GetAxisRaw ("P1_Horizontal"));
@@ -216,7 +218,7 @@ public class PlayerController : MonoBehaviour
 	{
 
 		float zOffset = _direction * 3;
-		Vector3 Offset = new Vector3 (0, 0 , zOffset);
+		Vector3 Offset = new Vector3 (zOffset, 0 , 0);
 		Debug.Log ("Z offset: " + zOffset.ToString ());
 
 		GameObject obj = Instantiate(_bomb, transform.position + Offset, transform.rotation) as GameObject;
