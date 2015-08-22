@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour
     public KeyCode _moveRight = KeyCode.D;
     public KeyCode _shootKey = KeyCode.E;
 
+	public bool isSecond;
+	public float AxisInput = 0;
+	public string PlayerID; //EG P1, P2, P3, P4
+
 	float _direction = 1; //(If set to 1: Player facing Right) Else if( set to -1: Player Facing left);
 
     bool _holdingbomb = false;
@@ -42,6 +46,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
 		_rigidbody = GetComponent<Rigidbody> ();
        
     }
@@ -139,12 +144,57 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
+	float oldAxis1 = 0.0f;
+	float oldAxis2 = 0.0f;
 
     void Xbox360Input()
     {
         Debug.Log("No Xbox360 Input Yet Lol");
+		AxisInput = 0;
+		AxisInput = Input.GetAxis (PlayerID + "_Horizontal");
 
+		//Debug.Log ("Axis Input is: " + AxisInput.ToString ());
+
+		if (Input.GetButtonDown(PlayerID + "_XboxJump") && _canJump)
+		{
+			//Add jump code here quickly!
+			_rigidbody.AddForce(new Vector3(0,800,0));
+			_canJump = false;
+		}
+
+		if (Input.GetButtonDown (PlayerID + "_XboxShoot")) 
+		{
+			ShootBomb();
+		}
+		
+
+
+		//Move player left
+
+		if (AxisInput < 0) 
+		{
+			Debug.Log("Player Moving left");
+			transform.Translate(new Vector3(0,0,1) * _speed * Time.deltaTime);
+			_direction = 1;
+		}
+		
+		//Move player right
+		
+		if (AxisInput > 0) 
+		{
+			Debug.Log("Player Moving right");
+			transform.Translate(new Vector3(0,0,-1) * _speed * Time.deltaTime);
+			_direction = -1;
+		}
+
+		float axis1 = 0.0f;
+		float axis2 = 0.0f;
+
+		axis1 = Input.GetAxisRaw ("P2_Horizontal");
+		axis2 = Input.GetAxisRaw ("P2_Horizontal");
+
+		Debug.Log ("Player one input: " + Input.GetAxisRaw ("P1_Horizontal"));
+		Debug.Log ("Player two inpuut: " + Input.GetAxisRaw ("P2_Horizontal"));
     }
 
     void ShootBomb()
