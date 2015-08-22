@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     bool _bombreleased = false; //This is if the bomb has been released etc etc
     bool _strengthInvert = false;
 	public bool _canJump = true;
+	private bool _alive = true;
+
 
     int _strength = 0;//The strength of the bomb ranging from 0-10
 
@@ -33,6 +35,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject _bomb; //This is the bomb prefab that we have created :D
     public GameObject _strengthbar;
+
+
 
 
     // Use this for initialization
@@ -45,6 +49,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+		if (!_alive)
+			Destroy (this.gameObject);
+
 
         PCUserInput();
         Xbox360Input();
@@ -157,7 +165,7 @@ public class PlayerController : MonoBehaviour
 	void CreateBomb()
 	{
 
-		float zOffset = _direction * 2;
+		float zOffset = _direction * 3;
 		Vector3 Offset = new Vector3 (0, 0 , zOffset);
 		Debug.Log ("Z offset: " + zOffset.ToString ());
 
@@ -167,5 +175,7 @@ public class PlayerController : MonoBehaviour
 		bomb.SetStrength(_strength);
 
 	}
+
+	public void isAlive(bool val) { _alive = val; }
 
 }

@@ -20,6 +20,12 @@ public class RefreshJump : MonoBehaviour {
 			PlayerController obj = collision.gameObject.GetComponent<PlayerController>();
 			obj._canJump = true;
 		}
-		
+
+		if (collision.gameObject.tag == "Bomb") 
+		{
+			PlayerController obj = collision.gameObject.GetComponent<PlayerController>();
+			obj._canJump = true;
+		}
+
 	}
 }
