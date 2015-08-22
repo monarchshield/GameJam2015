@@ -13,13 +13,20 @@ GroupWork/[Bb]uild/
 *.userprefs
 *.pidb
 *.booproj
+<<<<<<< HEAD
 *.info
 *.File
+=======
+>>>>>>> ac63eaae736e5cd5e96fcf4b55c89425e56c989a
 
 # Unity3D generated meta files
 *.pidb.meta
 
 # Unity3D Generated File On Crash Reports
+<<<<<<< HEAD
 sysinfo.txt
 GroupWork/Library/metadata/00/00000000000000001000000000000000
 *.info
+=======
+sysinfo.txt
+>>>>>>> ac63eaae736e5cd5e96fcf4b55c89425e56c989a

@@ -35,7 +35,11 @@ public class BombScript : MonoBehaviour {
 
 			Debug.Log ("Applying force " + forcevalue.ToString());
 			_ApplyForce = true;
+<<<<<<< HEAD
 			_rigidbody.AddForce (new Vector3 (0, 0, forcevalue));
+=======
+			_rigidbody.AddForce (new Vector3 (forcevalue, 0, 0));
+>>>>>>> ac63eaae736e5cd5e96fcf4b55c89425e56c989a
 		}
 
 

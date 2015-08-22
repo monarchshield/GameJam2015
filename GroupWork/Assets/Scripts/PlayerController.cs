@@ -18,6 +18,13 @@ public class PlayerController : MonoBehaviour
     public KeyCode _moveRight = KeyCode.D;
     public KeyCode _shootKey = KeyCode.E;
 
+<<<<<<< HEAD
+=======
+	public bool isSecond;
+	public float AxisInput = 0;
+	public string PlayerID; //EG P1, P2, P3, P4
+
+>>>>>>> ac63eaae736e5cd5e96fcf4b55c89425e56c989a
 	float _direction = 1; //(If set to 1: Player facing Right) Else if( set to -1: Player Facing left);
 
     bool _holdingbomb = false;
@@ -42,6 +49,10 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+<<<<<<< HEAD
+=======
+
+>>>>>>> ac63eaae736e5cd5e96fcf4b55c89425e56c989a
 		_rigidbody = GetComponent<Rigidbody> ();
        
     }
@@ -66,14 +77,22 @@ public class PlayerController : MonoBehaviour
         {
     
 			transform.Translate(new Vector3(0,0,1) * _speed * Time.deltaTime);
+<<<<<<< HEAD
 			_direction = 1;
+=======
+			_direction = -1;
+>>>>>>> ac63eaae736e5cd5e96fcf4b55c89425e56c989a
         }
 
 
         if (Input.GetKey(_moveRight))
         {
 			transform.Translate(new Vector3(0,0,-1) * _speed * Time.deltaTime);
+<<<<<<< HEAD
 			_direction = -1;
+=======
+			_direction = 1;
+>>>>>>> ac63eaae736e5cd5e96fcf4b55c89425e56c989a
         }
 
         if (Input.GetKey(_jump) && _canJump)
@@ -108,7 +127,11 @@ public class PlayerController : MonoBehaviour
                     _strength += 1;
                     _timer = _delay;
 
+<<<<<<< HEAD
 					_strengthbar.transform.localScale = new Vector3(1, 1,_strength);
+=======
+					_strengthbar.transform.localScale = new Vector3(_strength, 1,1);
+>>>>>>> ac63eaae736e5cd5e96fcf4b55c89425e56c989a
 
                     if (_strength >= 10)
                         _strengthInvert = true;
@@ -122,7 +145,11 @@ public class PlayerController : MonoBehaviour
                     _strength -= 1;
                     _timer = _delay;
 
+<<<<<<< HEAD
 					_strengthbar.transform.localScale = new Vector3(1, 1,_strength);
+=======
+					_strengthbar.transform.localScale = new Vector3(_strength, 1,1);
+>>>>>>> ac63eaae736e5cd5e96fcf4b55c89425e56c989a
 
                     if (_strength <= 0)
                         _strengthInvert = false;
@@ -139,12 +166,67 @@ public class PlayerController : MonoBehaviour
     }
 
 
+<<<<<<< HEAD
 
+=======
+	float oldAxis1 = 0.0f;
+	float oldAxis2 = 0.0f;
+>>>>>>> ac63eaae736e5cd5e96fcf4b55c89425e56c989a
 
     void Xbox360Input()
     {
         Debug.Log("No Xbox360 Input Yet Lol");
+<<<<<<< HEAD
 
+=======
+		AxisInput = 0;
+		AxisInput = Input.GetAxis (PlayerID.ToString() + "_Horizontal");
+
+
+
+		//Debug.Log ("Axis Input is: " + AxisInput.ToString ());
+
+		if (Input.GetButtonDown(PlayerID + "_XboxJump") && _canJump)
+		{
+			//Add jump code here quickly!
+			_rigidbody.AddForce(new Vector3(0,800,0));
+			_canJump = false;
+		}
+
+		if (Input.GetButtonDown (PlayerID + "_XboxShoot")) 
+		{
+			ShootBomb();
+		}
+		
+
+
+		//Move player left
+
+		if (AxisInput < 0) 
+		{
+			Debug.Log("Player Moving left");
+			transform.Translate(new Vector3(-1,0,0) * _speed * Time.deltaTime);
+			_direction = -1;
+		}
+		
+		//Move player right
+		
+		if (AxisInput > 0) 
+		{
+			Debug.Log("Player Moving right");
+			transform.Translate(new Vector3(1,0,0) * _speed * Time.deltaTime);
+			_direction = 1;
+		}
+
+		float axis1 = 0.0f;
+		float axis2 = 0.0f;
+
+		axis1 =   Input.GetAxisRaw ("P2_Horizontal");
+		axis2 = Input.GetAxisRaw ("P2_Horizontal");
+
+		Debug.Log ("Player one input: " + Input.GetAxisRaw ("P1_Horizontal"));
+		Debug.Log ("Player two inpuut: " + Input.GetAxisRaw ("P2_Horizontal"));
+>>>>>>> ac63eaae736e5cd5e96fcf4b55c89425e56c989a
     }
 
     void ShootBomb()
@@ -166,7 +248,11 @@ public class PlayerController : MonoBehaviour
 	{
 
 		float zOffset = _direction * 3;
+<<<<<<< HEAD
 		Vector3 Offset = new Vector3 (0, 0 , zOffset);
+=======
+		Vector3 Offset = new Vector3 (zOffset, 0 , 0);
+>>>>>>> ac63eaae736e5cd5e96fcf4b55c89425e56c989a
 		Debug.Log ("Z offset: " + zOffset.ToString ());
 
 		GameObject obj = Instantiate(_bomb, transform.position + Offset, transform.rotation) as GameObject;
